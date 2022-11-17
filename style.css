@@ -1,0 +1,274 @@
+/*-----------------------------------*\
+  #style.css
+\*-----------------------------------*/
+
+/**
+ * copyright 2022 codewithsadee
+ */
+
+
+
+
+
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+:root {
+
+  /**
+   * colors
+   */
+
+  --background: hsl(210, 7%, 11%);
+  --surface-variant: hsl(218, 8%, 28%);
+  --secondary-container: hsl(218, 18%, 29%);
+  --on-secondary-container: hsl(219, 70%, 91%);
+
+  /**
+   * border radius
+   */
+
+  --radius-full: 50%;
+  --radius-12: 12px;
+
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img,
+button,
+ion-icon { display: block; }
+
+img {
+  height: auto;
+  user-select: none;
+}
+
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  font-size: 1.6rem;
+  padding-block: 48px;
+  overflow-y: overlay;
+}
+
+::-webkit-scrollbar { width: 6px; }
+
+::-webkit-scrollbar-track { background-color: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+body:is(:hover, :focus-visible)::-webkit-scrollbar-thumb {
+  background-color: var(--surface-variant);
+}
+
+
+
+
+
+/*-----------------------------------*\
+  #MAIN
+\*-----------------------------------*/
+
+.container {
+  padding-inline: 8px;
+  display: grid;
+  gap: 24px;
+}
+
+.slider {
+  --slider-items: 1; /* mandatory for slider */
+
+  position: relative;
+  width: 100%;
+  padding-inline: 16px;
+  overflow-x: hidden;
+}
+
+.slider::before,
+.slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 24px;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(to var(--gr-direction, right),
+                      var(--background) 0%, transparent 100%);
+}
+
+.slider::before { left: 0; }
+
+.slider::after {
+  right: 0;
+  --gr-direction: left;
+}
+
+.slider-container {
+  position: relative; /* mandatory for slider */
+  display: flex;
+  justify-content: flex-start;
+  transition: transform 250ms ease;
+}
+
+.slider-item {
+  min-width: calc(100% / var(--slider-items));
+  width: calc(100% / var(--slider-items));
+  padding-inline: 4px;
+}
+
+.card {
+  background-color: var(--surface-variant);
+  border-radius: var(--radius-12);
+  overflow: hidden;
+}
+
+.img-holder { aspect-ratio: var(--width) / var(--height); }
+
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  background-color: var(--secondary-container);
+  color: var(--on-secondary-container);
+  font-size: 2.4rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  box-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.5);
+}
+
+.slider-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.slider-control.prev { left: 0; }
+
+.slider-control.next { right: 0; }
+
+.slider-control:disabled { display: none; }
+
+
+
+
+
+/*-----------------------------------*\
+  #MEDIA QUERIES
+\*-----------------------------------*/
+
+/**
+ * responsive for large than 567px screen
+ */
+
+@media (min-width: 567px) {
+
+  .container {
+    max-width: 480px;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .card-slider { --slider-items: 2; }
+
+}
+
+
+
+
+
+/**
+ * responsive for large than 768px screen
+ */
+
+@media (min-width: 768px) {
+
+  .container { max-width: 720px; }
+
+  .card-slider { --slider-items: 3; }
+
+}
+
+
+
+
+
+/**
+ * responsive for large than 992px screen
+ */
+
+@media (min-width: 992px) {
+
+  .container { max-width: 960px; }
+
+  .card-slider { --slider-items: 4; }
+
+}
+
+
+
+
+
+/**
+ * responsive for large than 1200px screen
+ */
+
+@media (min-width: 1200px) {
+
+  .container { max-width: 1150px; }
+
+  .banner-slider { --slider-items: 2; }
+
+  .card-slider { --slider-items: 5; }
+
+}
+
+
+
+
+
+/**
+ * responsive for large than 1400px screen
+ */
+
+@media (min-width: 1400px) {
+
+  .container { max-width: 1400px; }
+
+}
